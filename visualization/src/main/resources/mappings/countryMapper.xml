@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gzmdrw.vz.mapper.CountryMapper">
+	<cache></cache>
+	<resultMap id="countryMapper" type="Country" autoMapping="true">
+		<id column="id" property="id"/>
+		<collection property="c_years" ofType="Year" autoMapping="true">
+			<result column="yearid" property="id"/>
+			<collection property="c_gdps" ofType="GDP" autoMapping="true">
+				<result column="gdpId" property="id"/>
+			</collection>
+		</collection>
+	</resultMap>
+	<!--查询全部-->
+	<select id="list" resultMap="countryMapper">
+		select tc.*,ty.id yearid,ty.year,gdp.*,gdp.id gdpId from t_country tc
+		LEFT JOIN t_gdp gdp on tc.id=gdp.contryId
+		LEFT JOIN t_year ty on ty.id=gdp.yearId
+		ORDER BY ty.year,tc.id
+	</select>
+	<!--根据id查询  User-->
+	<select id="load" parameterType="int" resultMap="countryMapper">
+		select tc.*,ty.id yearid,ty.year,gdp.*,gdp.id gdpId from t_country tc
+		LEFT JOIN t_gdp gdp on tc.id=gdp.contryId
+		LEFT JOIN t_year ty on ty.id=gdp.yearId
+		WHERE tc.id=#{id} ORDER BY ty.year
+	</select>
+
+
+</mapper> 

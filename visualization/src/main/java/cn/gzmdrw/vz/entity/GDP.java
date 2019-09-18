@@ -1,22 +1,24 @@
 package cn.gzmdrw.vz.entity;
 
 import java.io.Serializable;
+import java.util.List;
+
 /*
-*@Create by  WGuangZhi  1300847590@qq.com 2019/9/18 18:02
+*@Create by  WGuangZhi  1300847590@qq.com 2019/9/18 18:05
 *@Version V1.0
 *
 */
-public class Gdp implements Serializable {
+public class GDP implements Serializable {
     private int id;
     private int countryId;
     private int yearId;
     private String yimeiyuan;
     private String meiyuan;
 
-    public Gdp() {
+    public GDP() {
     }
 
-    public Gdp(int id, int countryId, int yearId, String yimeiyuan, String meiyuan) {
+    public GDP(int id, int countryId, int yearId, String yimeiyuan, String meiyuan) {
         this.id = id;
         this.countryId = countryId;
         this.yearId = yearId;
