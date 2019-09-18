@@ -1,6 +1,12 @@
 package cn.gzmdrw.vz.entity;
 
-public class Country {
+import java.io.Serializable;
+/*
+*@Create by  WGuangZhi  1300847590@qq.com 2019/9/18 18:02
+*@Version V1.0
+*
+*/
+public class Country implements Serializable {
     private int id;
     private String country;
 
