@@ -15,7 +15,7 @@
 	<!--查询全部-->
 	<select id="list" resultMap="countryMapper">
 		select tc.*,ty.id yearid,ty.year,gdp.*,gdp.id gdpId from t_country tc
-		LEFT JOIN t_gdp gdp on tc.id=gdp.contryId
+		LEFT JOIN t_gdp gdp on tc.id=gdp.countryId
 		LEFT JOIN t_year ty on ty.id=gdp.yearId
 		ORDER BY ty.year,tc.id
 	</select>
