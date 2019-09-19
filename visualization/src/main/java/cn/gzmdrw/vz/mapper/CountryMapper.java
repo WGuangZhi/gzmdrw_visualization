@@ -7,5 +7,5 @@ import java.util.List;
 @Mapper
 public interface CountryMapper {
     List<Country> list();
-    Country load(int id);
+    List<Country> load(int id);
 }

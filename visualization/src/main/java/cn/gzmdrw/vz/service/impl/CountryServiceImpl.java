@@ -17,7 +17,7 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public Country load(int id) {
+    public List<Country> load(int id) {
         return countryMapper.load(id);
     }
 }

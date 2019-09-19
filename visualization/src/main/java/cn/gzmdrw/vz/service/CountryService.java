@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface CountryService {
     List<Country> list();
-    Country load(int id);
+    List<Country> load(int id);
 }
