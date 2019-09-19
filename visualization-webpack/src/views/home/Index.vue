@@ -3,6 +3,7 @@
   <div id="main1">
 	  <div id="main" style="width:100%;height: 400px;"></div>
 	  <div id="zhexie1" style="width:100%;height: 400px;"></div>
+	  <div id="gdp" style="width:100%;height: 400px;"></div>
   </div>
 </template>
 <script>
@@ -14,6 +15,7 @@
             return {
                 charts: '',//拿到dom对象元素
                 charts1: '',//拿到dom对象元素
+                gdp: '',//拿到gdp ===dom对象元素
                 opinion:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎'],//侧边栏对象数据
                 opinionData:[//图表对象数据
                   {value:335, name:'直接访问'},
@@ -22,55 +24,67 @@
                   {value:135, name:'视频广告'},
                   {value:1548, name:'搜索引擎'}
                 ],
-				zexieDat:[],
-				country:[{
-					yearDate:[]
-				}]
+			    countrs:[],//国家列表
+				years:[],//年份列表
+				cnDGP:[],//中国GDP
+				jpDGP:[],//日本GDP
+				rkDGP:[],//韩国
+				brDGP:[],//英国
+				gmDGP:[],//德国
+				usDGP:[]//美国GDP
             }
         },
         methods:{
+			getData(){
+				
+			},
 			zexie(id){
-			this.charts1 = echarts.init(document.getElementById(id))
-			this.charts1.setOption({
-			backgroundColor: '#FFF0F5',
-				/* title: {
-				   text: '折线图',
-				   subtext: '模拟数据',
-				   x: 'center'
-				 }, */
+				request({
+					url:'/country/list',
+					method:"get"
+				}).then(resp=>{
+					console.log(resp)
+					this.countrs=resp.data.countrs//国家列表
+					this.years=resp.data.years//国家列表
+					this.cnDGP=resp.data.cnDGP,//中国GDP
+					this.jpDGP=resp.data.jpDGP,//日本GDP
+					this.rkDGP=resp.data.rkDGP,//韩国
+					this.brDGP=resp.data.brDGP,//英国
+					this.gmDGP=resp.data.gmDGP,//德国
+					this.usDGP=resp.data.usDGP,//美国GDP
+					
+					//国家数据
+					this.charts1 = echarts.init(document.getElementById(id))
+					this.charts1.setOption({
+					backgroundColor: '#FFF0F5',
+				 title: {
+				   text: '各国GDP对比',
+				   subtext: 'GDP',
+				   x: 'right'
+				 }, 
 				 legend: {
-				   // orient 设置布局方式，默认水平布局，可选值：'horizontal'（水平） ¦ 'vertical'（垂直）
 				   orient: 'horizontal',
 				   // x 设置水平安放位置，默认全图居中，可选值：'center' ¦ 'left' ¦ 'right' ¦ {number}（x坐标，单位px）
 				   x: 'left',
 				   // y 设置垂直安放位置，默认全图顶端，可选值：'top' ¦ 'bottom' ¦ 'center' ¦ {number}（y坐标，单位px）
 				   y: 'top',
-				   data: ['预期','实际','假设']
+				   data: this.countrs
 				 },
 		  
 				 //  图表距边框的距离,可选值：'百分比'¦ {number}（单位px）
 				 grid: {
-					 top: '16%',   // 等价于 y: '16%'
-					 left: '3%', 
-					 right: '8%',
+					 top: '15%',   // 等价于 y: '16%'
+					 left: '0.5%', 
+					 right: '2%',
 					 bottom: '3%',
 					 containLabel: true
 				 },
-		  
 				 // 提示框
 				 tooltip: {
 				   trigger: 'axis'
 				 },
-		  
-				 //工具框，可以选择
-				 /* toolbox: {
-					 feature: {
-						 saveAsImage: {} //下载工具
-					 }
-				 }, */
-		  
 				 xAxis: {
-				   name: '周几',
+				   name: '年份',
 				   type: 'category',
 				   axisLine: {
 					 lineStyle: {
@@ -85,15 +99,15 @@
 					 },
 				   // boundaryGap值为false的时候，折线第一个点在y轴上
 				   boundaryGap: false,
-				   data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+					data:this.years
 				 },
 		  
 				 yAxis: {
-				   name: '数值',
+				   name: '美元',
 				   type: 'value',
 				   min:0, // 设置y轴刻度的最小值
-				   max:1800,  // 设置y轴刻度的最大值
-				   splitNumber:9,  // 设置y轴刻度间隔个数
+				   max:20000000000000,  // 设置y轴刻度的最大值
+				   splitNumber:7,  // 设置y轴刻度间隔个数
 				   axisLine: {
 					 lineStyle: {
 					   // 设置y轴颜色
@@ -104,8 +118,8 @@
 		  
 				 series: [
 				   {
-					 name: '预期',
-					 data: [820, 932, 301, 1434, 1290, 1330, 1320],
+					 name: '中国',
+					 data:this.cnDGP,
 					 type: 'line',
 					 // 设置小圆点消失
 					 // 注意：设置symbol: 'none'以后，拐点不存在了，设置拐点上显示数值无效
@@ -113,10 +127,9 @@
 					 // 设置折线弧度，取值：0-1之间
 					 smooth: 0.5,
 				   },
-		  
 				   {
-					 name: '实际',
-					 data: [620, 732, 941, 834, 1690, 1030, 920],
+					 name: '日本',
+					 data:this.jpDGP,
 					 type: 'line',
 					 // 设置折线上圆点大小
 					 symbolSize:8,
@@ -124,7 +137,7 @@
 					   normal:{
 						 // 拐点上显示数值
 						 label : {
-						 show: true
+						 show: false
 						 },
 						 borderColor:'red',  // 拐点边框颜色
 						 lineStyle:{                 
@@ -136,8 +149,8 @@
 				   },
 		  
 				   {
-					 name: '假设',
-					 data: [120, 232, 541, 134, 290, 130, 120],
+					 name: '韩国',
+					 data:this.rkDGP,
 					 type: 'line',
 					 // 设置折线上圆点大小
 					 symbolSize:10,
@@ -147,7 +160,7 @@
 					   normal: {
 						 // 拐点上显示数值
 						 label : {
-						   show: true
+						   show: false
 						 },
 						 lineStyle:{
 						   // 使用rgba设置折线透明度为0，可以视觉上隐藏折线
@@ -155,11 +168,46 @@
 						 }
 					   }
 					 }
+				   },
+				   {
+				   	 name: '英国',
+				   	 data:this.brDGP,
+				   	 type: 'line',
+				   	 // 设置小圆点消失
+				   	 // 注意：设置symbol: 'none'以后，拐点不存在了，设置拐点上显示数值无效
+				   	 symbol: 'none',
+				   	 // 设置折线弧度，取值：0-1之间
+				   	 smooth: 0.5,
+				   },
+				   {
+				   	 name: '德国',
+				   	 data:this.gmDGP,
+				   	 type: 'line',
+				   	 // 设置小圆点消失
+				   	 // 注意：设置symbol: 'none'以后，拐点不存在了，设置拐点上显示数值无效
+				   	 symbol: 'none',
+				   	 // 设置折线弧度，取值：0-1之间
+				   	 smooth: 0.5,
+				   },
+				   {
+				   	 name: '美国',
+				   	 data:this.usDGP,
+				   	 type: 'line',
+				   	 // 设置小圆点消失
+				   	 // 注意：设置symbol: 'none'以后，拐点不存在了，设置拐点上显示数值无效
+				   	 symbol: 'none',
+				   	 // 设置折线弧度，取值：0-1之间
+				   	 smooth: 0.5,
 				   }
 				 ],
-				 color: ['#00EE00', '#FF9F7F','#FFD700']
+				 
+				 color: ['#00FF00', '#00FFFF','#00FFFF','#EAC100','#484891','#CE0000']//线的颜色
 			 })
+			 }).catch(err=>{
+			 	console.log(err)
+			 });
 			},
+		
 		drawPie(id){
 		   this.charts = echarts.init(document.getElementById(id))
 		   this.charts.setOption({
@@ -208,27 +256,13 @@
 			   }
 			 ]
 		   })
-		},
-		getData(){
-			request({
-				url:'/country/load/1',
-				method:"get"
-			}).then(resp=>{
-				this.country.yearDate=resp.data.c_years
-				for(var i=0;i<resp.data.c_years.length;i++){
-					// console.log(resp.data.c_years[i].year)
-					// const year1=resp.data.c_years[i].year
-				}
-				console.log(this.country.yearDate)
-			}).catch(err=>{
-				console.log(err)
-			})
 		}
 	},
   //调用
 mounted(){
 	this.drawPie('main')
 	this.zexie('zhexie1')
+	// this.gdp('gdp')
 	this.getData()
 	/* this.$nextTick(function() {
 		

@@ -19,7 +19,7 @@ let RouteList = [
         path: '/',
         name: 'Dashboard',
         meta: {
-          title: '首页',
+          title: '国际GDP对比',
           keepAlive: true
         },
         component: resolve => require(['@/views/home/Index.vue'], resolve),

@@ -1,4 +1,3 @@
-<!--https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/ScrollPane/index.vue-->
 <template>
 
   <div class="scroll-container" ref="scrollContainer" @wheel.prevent="handleScroll">
