@@ -22,13 +22,10 @@
             return {
                 charts: '',//拿到dom对象元素
                 charts1: '',//拿到dom对象元素
-                opinion:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎'],//侧边栏对象数据
+				//扇形
+                opinion:[],//侧边栏对象数据
                 opinionData:[//图表对象数据
-                  {value:335, name:'直接访问'},
-                  {value:310, name:'邮件营销'},
-                  {value:234, name:'联盟广告'},
-                  {value:135, name:'视频广告'},
-                  {value:1548, name:'搜索引擎'}
+                  // {value:335, name:'直接访问'}
                 ],
 			    countrs:[],//国家列表
 				years:[],//年份列表
@@ -201,11 +198,15 @@
 			},
 		
 		drawPie(id){
+			// console.log(this.opinionData)
 			request({
 				url:'/country/load/2018',
 				method:"get"
 			}).then(resp=>{
-				console.log(resp)
+				//console.log(resp)
+		    this.opinion=resp.data.opinion
+		    this.opinionData=resp.data.opinionData
+			//console.log(this.opinionData)
 		   this.charts = echarts.init(document.getElementById(id))
 		   this.charts.setOption({
 			 //Echarts 的悬浮框
