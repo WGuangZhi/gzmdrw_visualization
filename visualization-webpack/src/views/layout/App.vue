@@ -86,25 +86,25 @@
         <div class="menu">
           <el-menu
               router
-              background-color="#222d32"
+              background-color="#005757"
               text-color="#fff"
               :default-active="$route.path" class="menu" @open="handleOpen" @close="handleClose"
               :collapse="isCollapse">
             <template v-for="(menu_v,menu_k) in menu">
-              <el-submenu v-if="menu_v.children" :index="menu_k">
+              <el-submenu v-if="menu_v.pers" :index="menu_k+''">
                 <template slot="title">
                   <i :class="menu_v.icon"></i>
                   <span slot="title">{{ menu_v.name }}</span>
                 </template>
-                <el-menu-item v-for="(menuChildren_v,menuChildren_k) in menu_v.children"
+                <el-menu-item v-for="(menuChildren_v,menuChildren_k) in menu_v.pers"
                               :key="menuChildren_k"
-                              :index="menuChildren_v.path">
+                              :index="menuChildren_v.url">
                   <i class="is-children fa fa-circle-o"></i>
                   <span slot="title">{{ menuChildren_v.name }}</span>
                 </el-menu-item>
               </el-submenu>
-              <el-menu-item v-else :index="menu_v.path">
-                <i :class="menu_v.icon"></i>
+              <el-menu-item v-else :index="menu_v.url">
+                <i class="is-children fa fa-circle-o"></i>
                 <span slot="title">{{ menu_v.name }}</span>
               </el-menu-item>
             </template>
@@ -135,7 +135,7 @@
   import EuiFooter from './Footer.vue';
   import NavBar from './NavBar.vue'
   import Menu from '@/menu/index';
-
+  import request from '@/utils/request.js'
   export default {
     data() {
       return {
@@ -147,6 +147,20 @@
       };
     },
     methods: {
+		handleSelect(key, keyPath) {
+		  console.log(key, keyPath);
+		},
+		getDate(){
+			request({
+			  url: '/country/permission/list',
+			  method: 'get'
+			}).then(resp=>{
+				this.menu=resp.data
+				console.log(this.data)
+			}).catch(err=>{
+				console.log(err)
+			})
+		},
       NavBarWidth(){
         let navBar = document.getElementById('nav-bar');
         if(!navBar)return;
@@ -210,7 +224,7 @@
       }
     },
     mounted: function () {
-
+	  this.getDate();
       this.switchTabBar = localStorage.getItem('switchTabBar') ? true : false;
       this.fixedTabBar = localStorage.getItem('fixedTabBar') ? true : false;
       if(this.switchTabBar)document.getElementById('mainContainer').style.minHeight = 'calc(100vh - 139px)';
