@@ -69,52 +69,13 @@ let RouteList = [
         },
         component: resolve => require(['@/views/categoryManage/Index.vue'], resolve),
       },
-      {
-        path: '/role_manage',
-        name: 'RoleManage',
-        meta: {
-          title: '角色列表',
-          keepAlive: true
-        },
-        component: resolve => require(['@/views/permissionManage/role/Role.vue'], resolve),
-      },
-      {
-        path: '/permission_list',
-        name: 'PermissionList',
-        meta: {
-          title: '权限列表',
-          keepAlive: true
-        },
-        component: resolve => require(['@/views/permissionManage/permission/Index.vue'], resolve),
-      },
+      
       //个人中心，可能有修改密码，头像修改等路由
       Personal
     ]
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    meta: {
-      title: '后台登录',
-      keepAlive: false
-    },
-    components: {
-      blank: resolve => require(['@/views/login/Login.vue'], resolve),
-    }
-  },
-
+  }
 ]
 
-
-RouteList[0].children.push({
-  path: '/build_code',
-  name: 'BuildCode',
-  meta: {
-    title: '构建代码',
-    keepAlive: true
-  },
-  component: resolve => require(['@/views/developmentTool/Build.vue'], resolve),
-});
 
 export default new Router({routes: RouteList})
 
