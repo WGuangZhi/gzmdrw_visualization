@@ -66,7 +66,7 @@
   import Screenfull from 'screenfull'
   import EuiFooter from './Footer.vue';
   import NavBar from './NavBar.vue'
-  import Menu from '@/menu/index';
+  // import Menu from '@/menu/index';
   import request from '@/utils/request.js'
   export default {
     data() {
@@ -75,7 +75,7 @@
         switchTabBar: false,
         siteName: this.$Config.siteName,
         isCollapse: false,
-        menu: Menu,
+        menu: [],
       };
     },
     methods: {
