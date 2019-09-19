@@ -73,7 +73,21 @@ public class CountryController {
     public R load(@PathVariable int id){
         Map map=new HashMap<>();
         List<Country> countrys=countryService.load(id);
-
-        return R.isOk().data(countrys);
+        List<Map> listMap=new ArrayList<Map>();
+        List<String> opinion=new ArrayList<String>();
+        for(Country countr:countrys){
+            opinion.add(countr.getCountry());
+            for (Year yea:countr.getC_years()){
+                for (GDP gd:yea.getC_gdps()){
+                    Map opinionData=new HashMap();
+                    opinionData.put("value",gd.getMeiyuan());
+                    opinionData.put("name",countr.getCountry());
+                    listMap.add(opinionData);
+                }
+            }
+        }
+        map.put("opinion",opinion);
+        map.put("opinionData",listMap);
+        return R.isOk().data(map);
     }
 }
