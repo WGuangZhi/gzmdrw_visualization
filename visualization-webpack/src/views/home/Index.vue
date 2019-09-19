@@ -1,9 +1,16 @@
 <template>
   <!--为echarts准备一个具备大小的容器dom-->
   <div id="main1">
+	  <div class="top" style="width:100%;height: 100px;">
+		<h1>2018年各国GDP对比</h1>
+	  </div>
 	  <div id="main" style="width:100%;height: 400px;"></div>
+	  <div class="top" style="width:100%;height: 100px;">
+	  		<h2>1969年到2018年各国GDP对比</h2>
+	  </div>
 	  <div id="zhexie1" style="width:100%;height: 400px;"></div>
-	  <div id="gdp" style="width:100%;height: 400px;"></div>
+	  <div class="buttom" style="width:100%;height: 100px;">
+	  </div>
   </div>
 </template>
 <script>
@@ -15,7 +22,6 @@
             return {
                 charts: '',//拿到dom对象元素
                 charts1: '',//拿到dom对象元素
-                gdp: '',//拿到gdp ===dom对象元素
                 opinion:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎'],//侧边栏对象数据
                 opinionData:[//图表对象数据
                   {value:335, name:'直接访问'},
@@ -43,7 +49,6 @@
 					url:'/country/list',
 					method:"get"
 				}).then(resp=>{
-					console.log(resp)
 					this.countrs=resp.data.countrs//国家列表
 					this.years=resp.data.years//国家列表
 					this.cnDGP=resp.data.cnDGP,//中国GDP
@@ -131,15 +136,13 @@
 					 name: '日本',
 					 data:this.jpDGP,
 					 type: 'line',
-					 // 设置折线上圆点大小
 					 symbolSize:8,
 					 itemStyle:{
 					   normal:{
-						 // 拐点上显示数值
 						 label : {
 						 show: false
 						 },
-						 borderColor:'red',  // 拐点边框颜色
+						 borderColor:'red',
 						 lineStyle:{                 
 						   width:5,  // 设置线宽
 						   type:'dotted'  //'dotted'虚线 'solid'实线
@@ -158,12 +161,10 @@
 					 symbol:'circle',            
 					 itemStyle: {
 					   normal: {
-						 // 拐点上显示数值
 						 label : {
 						   show: false
 						 },
 						 lineStyle:{
-						   // 使用rgba设置折线透明度为0，可以视觉上隐藏折线
 						   color: 'rgba(0,0,0,0)'
 						 }
 					   }
@@ -173,30 +174,21 @@
 				   	 name: '英国',
 				   	 data:this.brDGP,
 				   	 type: 'line',
-				   	 // 设置小圆点消失
-				   	 // 注意：设置symbol: 'none'以后，拐点不存在了，设置拐点上显示数值无效
 				   	 symbol: 'none',
-				   	 // 设置折线弧度，取值：0-1之间
 				   	 smooth: 0.5,
 				   },
 				   {
 				   	 name: '德国',
 				   	 data:this.gmDGP,
 				   	 type: 'line',
-				   	 // 设置小圆点消失
-				   	 // 注意：设置symbol: 'none'以后，拐点不存在了，设置拐点上显示数值无效
 				   	 symbol: 'none',
-				   	 // 设置折线弧度，取值：0-1之间
 				   	 smooth: 0.5,
 				   },
 				   {
 				   	 name: '美国',
 				   	 data:this.usDGP,
 				   	 type: 'line',
-				   	 // 设置小圆点消失
-				   	 // 注意：设置symbol: 'none'以后，拐点不存在了，设置拐点上显示数值无效
 				   	 symbol: 'none',
-				   	 // 设置折线弧度，取值：0-1之间
 				   	 smooth: 0.5,
 				   }
 				 ],
@@ -209,13 +201,18 @@
 			},
 		
 		drawPie(id){
+			request({
+				url:'/country/load/2018',
+				method:"get"
+			}).then(resp=>{
+				console.log(resp)
 		   this.charts = echarts.init(document.getElementById(id))
 		   this.charts.setOption({
 			 //Echarts 的悬浮框
-			 /* tooltip: {
+			  tooltip: {
 			   trigger: 'item',
 			   formatter: '{a}<br/>{b}:{c} ({d}%)'
-			 }, */
+			 }, 
 			 //侧边栏 图例组件,展现了不同系列的标记(symbol)，颜色和名字。可以通过点击图例控制哪些系列不显示。
 			 legend: {
 			   orient: 'vertical',//可选值有horizontal(横向)和vertical（竖向）。默认值是horizontal
@@ -256,6 +253,9 @@
 			   }
 			 ]
 		   })
+		   }).catch(err=>{
+		   	console.log(err)
+		   });
 		}
 	},
   //调用
