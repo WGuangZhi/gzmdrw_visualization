@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gzmdrw.vz.mapper.GoodsMapper">
+	<cache></cache>
+	<resultMap id="goodsMapper" type="Goods" autoMapping="true">
+		<id column="goodsId" property="id"/>
+		<association property="year" javaType="Year" autoMapping="true">
+			<id column="id" property="id"/>
+		</association>
+	</resultMap>
+	<select id="list" resultMap="goodsMapper">
+		select ty.*,tg.*,tg.id goodsId from  t_goods tg
+		LEFT JOIN t_year ty on tg.yearId=ty.id
+	</select>
+
+	<select id="load" parameterType="int" resultMap="goodsMapper">
+		select ty.*,tg.*,tg.id goodsId from  t_goods tg
+		LEFT JOIN t_year ty on tg.yearId=ty.id
+		where ty.year =#{year}
+	</select>
+</mapper> 
