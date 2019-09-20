@@ -36,7 +36,7 @@
                 </el-menu-item>
               </el-submenu>
               <el-menu-item v-else :index="menu_v.url">
-                <i class="is-children fa fa-circle-o"></i>
+                <!-- <i class="is-children fa fa-circle-o"></i> -->
                 <span slot="title">{{ menu_v.name }}</span>
               </el-menu-item>
             </template>
@@ -88,7 +88,6 @@
 			  method: 'get'
 			}).then(resp=>{
 				this.menu=resp.data
-				console.log(this.data)
 			}).catch(err=>{
 				console.log(err)
 			})
