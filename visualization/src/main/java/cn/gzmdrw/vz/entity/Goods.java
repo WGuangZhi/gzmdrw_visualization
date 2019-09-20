@@ -15,15 +15,12 @@ public class Goods implements Serializable {
     private float total_export_us;//出口总额(美元)(百万美元)）
     private float total_import_us;//进口总额(美元)(百万美元)
     private float balance_import_export_us;//（进出口差额(美元)(百万美元)）
-
+    private Year year;
     public Goods() {
         super();
     }
 
-    public Goods(int id, int yearId, float total_import_export_rmb, float total_export_rmb, float total_import_rmb,
-                 float balance_import_export_rmb, float total_import_export_us, float total_export_us, float total_import_us,
-                 float balance_import_export_us) {
-        super();
+    public Goods(int id, int yearId, float total_import_export_rmb, float total_export_rmb, float total_import_rmb, float balance_import_export_rmb, float total_import_export_us, float total_export_us, float total_import_us, float balance_import_export_us, Year year) {
         this.id = id;
         this.yearId = yearId;
         this.total_import_export_rmb = total_import_export_rmb;
@@ -34,6 +31,7 @@ public class Goods implements Serializable {
         this.total_export_us = total_export_us;
         this.total_import_us = total_import_us;
         this.balance_import_export_us = balance_import_export_us;
+        this.year = year;
     }
 
     public int getId() {
@@ -116,18 +114,34 @@ public class Goods implements Serializable {
         this.balance_import_export_us = balance_import_export_us;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
 
-    @Override
-    public String toString() {
-        return "Goods [id=" + id + ", yearId=" + yearId + ", total_import_export_rmb=" + total_import_export_rmb
-                + ", total_export_rmb=" + total_export_rmb + ", total_import_rmb=" + total_import_rmb
-                + ", balance_import_export_rmb=" + balance_import_export_rmb + ", total_import_export_us="
-                + total_import_export_us + ", total_export_us=" + total_export_us + ", total_import_us="
-                + total_import_us + ", balance_import_export_us=" + balance_import_export_us + "]";
+    public Year getYear() {
+        return year;
     }
 
-
+    public void setYear(Year year) {
+        this.year = year;
+    }
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "id=" + id +
+                ", yearId=" + yearId +
+                ", total_import_export_rmb=" + total_import_export_rmb +
+                ", total_export_rmb=" + total_export_rmb +
+                ", total_import_rmb=" + total_import_rmb +
+                ", balance_import_export_rmb=" + balance_import_export_rmb +
+                ", total_import_export_us=" + total_import_export_us +
+                ", total_export_us=" + total_export_us +
+                ", total_import_us=" + total_import_us +
+                ", balance_import_export_us=" + balance_import_export_us +
+                ", year=" + year +
+                '}';
+    }
 }
