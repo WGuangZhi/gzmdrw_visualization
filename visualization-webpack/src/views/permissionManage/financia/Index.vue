@@ -1,6 +1,13 @@
 <template>
     <!--为echarts准备一个具备大小的容器dom-->
-    <div id="main" style="width:100%;height: 400px;"></div>
+    <div id="app">
+    	<div class="top">
+    		<h1>财政</h1>
+    	</div>
+    	<div id="main" style="width:100%;height: 400px;background-color:#3CBCBC;">
+    		
+    	</div>
+    </div>
 </template>
 <script>
     import echarts from 'echarts'
