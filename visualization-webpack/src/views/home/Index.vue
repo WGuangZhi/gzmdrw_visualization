@@ -58,7 +58,7 @@
 					//国家数据
 					this.charts1 = echarts.init(document.getElementById(id))
 					this.charts1.setOption({
-					backgroundColor: '#FFF0F5',
+					backgroundColor: 'rgba(235, 97, 4, 0.32)',
 				 title: {
 				   text: '各国GDP对比',
 				   subtext: 'GDP',
@@ -277,4 +277,8 @@ mounted(){
         padding: 0;
         list-style: none;
     }
+	.top{
+		/* background-image:url(images/home1.jpg);
+		background-size:cover; */
+	}
 </style>
