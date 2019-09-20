@@ -69,13 +69,88 @@ let RouteList = [
         },
         component: resolve => require(['@/views/categoryManage/Index.vue'], resolve),
       },
-      
+      {
+        path: '/role_manage',
+        name: 'RoleManage',
+        meta: {
+          title: '角色列表',
+          keepAlive: true
+        },
+        component: resolve => require(['@/views/permissionManage/role/Role.vue'], resolve),
+      },
+      {
+        path: '/financia',
+        name: 'financia',
+        meta: {
+          title: 'financia',
+          keepAlive: true
+        },
+        component: resolve => require(['@/views/permissionManage/financia/Index.vue'], resolve),
+      },
+	  {
+	    path: '/financia_income',//
+	    name: 'financia_income',
+	    meta: {
+	      title: '财政收入',
+	      keepAlive: true
+	    },
+	    component: resolve => require(['@/views/financia_income/Index.vue'], resolve),
+	  },
+	  {
+	    path: '/financia_expenditure',//
+	    name: 'financia_expenditure',
+	    meta: {
+	      title: '财政支出',
+	      keepAlive: true
+	    },
+	    component: resolve => require(['@/views/financia_expenditure/Index.vue'], resolve),
+	  },
+	  {
+	    path: '/goods',//
+	    name: 'goods',
+	    meta: {
+	      title: '货物',
+	      keepAlive: true
+	    },
+	    component: resolve => require(['@/views/goods/Index.vue'], resolve),
+	  },
+	  {
+	    path: '/',
+	    name: 'index',
+	    meta: {
+	      title: '首页',
+	      keepAlive: true
+	    },
+	    component: resolve => require(['@/views/layout/App.vue'], resolve),
+	  },
       //个人中心，可能有修改密码，头像修改等路由
       Personal
     ]
-  }
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    meta: {
+      title: '后台登录',
+      keepAlive: false
+    },
+    components: {
+      blank: resolve => require(['@/views/login/Login.vue'], resolve),
+    }
+  },
+
 ]
 
+
+RouteList[0].children.push({
+  path: '/build_code',
+  name: 'BuildCode',
+  meta: {
+    title: '构建代码',
+    keepAlive: true
+  },
+  component: resolve => require(['@/views/developmentTool/Build.vue'], resolve),
+});
 
 export default new Router({routes: RouteList})
 
