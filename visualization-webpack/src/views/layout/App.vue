@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div class="header">
-      <div class="logo" style="background-color: rgb(60, 176, 188);">
+      <div class="logo" style="background-color: #cf9236;">
         <span class="big">{{ $Config.siteName }}</span>
       </div>
       <span class="header-btn" @click="hiddenSidebar">
@@ -18,7 +18,7 @@
         <div class="menu">
           <el-menu
               router
-              background-color="#005757"
+              background-color="#996633"
               text-color="#fff"
               :default-active="$route.path" class="menu" @open="handleOpen" @close="handleClose"
               :collapse="isCollapse">
@@ -42,7 +42,7 @@
             </template>
           </el-menu>
         </div>
-        <div class="sidebar-toggle" style="background-color:rgb(60, 176, 188);" @click="sidebarToggle">
+        <div class="sidebar-toggle" style="background-color:rgba(234, 159, 21, 0.94);" @click="sidebarToggle">
           <div class="icon-left">
             <i class="el-icon-back"></i>
           </div>
@@ -289,7 +289,7 @@
     position: fixed;
     display: flex;
     height: 50px;
-    background-color: #3cbcbc;
+    background-color: #cfa036d1;
     z-index: 10;
     .logo {
       .min {
