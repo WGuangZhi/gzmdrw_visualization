@@ -5,7 +5,7 @@
 		<h1>2018年各国GDP对比</h1>
 	  </div>
 	  <div id="main" style="width:100%;height: 400px;"></div>
-	  <div class="top" style="width:100%;height: 100px;">
+	  <div class="top2" style="width:100%;height: 100px;">
 	  		<h2>1969年到2018年各国GDP对比</h2>
 	  </div>
 	  <div id="zhexie1" style="width:100%;height: 400px;"></div>
@@ -277,8 +277,9 @@ mounted(){
         padding: 0;
         list-style: none;
     }
-	.top{
+	.top2{
 		/* background-image:url(images/home1.jpg);
 		background-size:cover; */
+		background-color: rgba(235, 97, 4, 0.32);
 	}
 </style>
