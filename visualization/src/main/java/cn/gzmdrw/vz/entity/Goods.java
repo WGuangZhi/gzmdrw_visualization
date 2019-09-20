@@ -1,20 +1,20 @@
 package cn.gzmdrw.vz.entity;
 
 import java.io.Serializable;
-
+//货物 实体
 public class Goods implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private int id;
-    private int yearId;
-    private float total_import_export_rmb;
-    private float total_export_rmb;
-    private float total_import_rmb;
-    private float balance_import_export_rmb;
-    private float total_import_export_us;
-    private float total_export_us;
-    private float total_import_us;
-    private float balance_import_export_us;
+    private int yearId;//年份id
+    private float total_import_export_rmb;//（进出口总额(人民币)(亿元)）
+    private float total_export_rmb;//（出口总额(人民币)(亿元)）
+    private float total_import_rmb;//（进口总额(人民币)(亿元)）
+    private float balance_import_export_rmb;//（进出口差额(人民币)(亿元)）
+    private float total_import_export_us;//（进出口总额(美元)(百万美元)）
+    private float total_export_us;//出口总额(美元)(百万美元)）
+    private float total_import_us;//进口总额(美元)(百万美元)
+    private float balance_import_export_us;//（进出口差额(美元)(百万美元)）
 
     public Goods() {
         super();
