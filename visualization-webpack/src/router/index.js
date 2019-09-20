@@ -79,14 +79,86 @@ let RouteList = [
         component: resolve => require(['@/views/permissionManage/role/Role.vue'], resolve),
       },
       {
-        path: '/permission_list',
-        name: 'PermissionList',
+        path: '/financia',
+        name: 'financia',
         meta: {
-          title: '权限列表',
+          title: 'financia',
           keepAlive: true
         },
-        component: resolve => require(['@/views/permissionManage/permission/Index.vue'], resolve),
+        component: resolve => require(['@/views/permissionManage/financia/Index.vue'], resolve),
       },
+	  {
+	    path: '/financia_income',//
+	    name: 'financia_income',
+	    meta: {
+	      title: '财政收入',
+	      keepAlive: true
+	    },
+	    component: resolve => require(['@/views/financia_income/Index.vue'], resolve),
+	  },
+	  {
+	    path: '/financia_expenditure',//
+	    name: 'financia_expenditure',
+	    meta: {
+	      title: '财政支出',
+	      keepAlive: true
+	    },
+	    component: resolve => require(['@/views/financia_expenditure/Index.vue'], resolve),
+	  },
+	  {
+	    path: '/goods',//
+	    name: 'goods',
+	    meta: {
+	      title: '货物',
+	      keepAlive: true
+	    },
+	    component: resolve => require(['@/views/goods/Index.vue'], resolve),
+	  },
+	  {
+	    path: '/goods_export',//
+	    name: 'goods_export',
+	    meta: {
+	      title: '货物出口',
+	      keepAlive: true
+	    },
+	    component: resolve => require(['@/views/goods_export/Index.vue'], resolve),
+	  },
+	  {
+	    path: '/goods_import',//
+	    name: 'goods_import',
+	    meta: {
+	      title: '货物进口',
+	      keepAlive: true
+	    },
+	    component: resolve => require(['@/views/goods_import/Index.vue'], resolve),
+	  },
+	  {
+	    path: '/product',//
+	    name: 'product',
+	    meta: {
+	      title: '生产总值',
+	      keepAlive: true
+	    },
+	    component: resolve => require(['@/views/product/Index.vue'], resolve),
+	  },
+	  {
+	    path: '/product_index_up',//
+	    name: 'product_index_up',
+	    meta: {
+	      title: '生产总值上半年',
+	      keepAlive: true
+	    },
+	    component: resolve => require(['@/views/product_index_up/Index.vue'], resolve),
+	  },
+	  {
+	    path: '/product_index_down',//
+	    name: 'product_index_down',
+	    meta: {
+	      title: '生产总值下半年',
+	      keepAlive: true
+	    },
+	    component: resolve => require(['@/views/product_index_down/Index.vue'], resolve),
+	  },
       //个人中心，可能有修改密码，头像修改等路由
       Personal
     ]

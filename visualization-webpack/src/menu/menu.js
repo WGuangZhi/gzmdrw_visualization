@@ -16,19 +16,19 @@ menu.home = {
  * @type {{name: string, icon: string, children: {}}}
  */
 menu.font_icon = {
-  name: '字体图标',
+  name: '经济增速',
   icon: 'fa fa-th',
-  children: {}
+  children: {},
 };
 let icon = menu.font_icon.children;
 
 icon.font_awesome = {
-  name: 'FontAwesome 4.7',
+  name: '经济增速高于世界水平',
   path: '/font_awesome',
 
 };
 icon.element_icon = {
-  name: 'ElementIcon',
+  name: '世界经济增长的第一引擎',
   path: '/element_icon',
 };
 
@@ -37,7 +37,7 @@ icon.element_icon = {
  * @type {{name: string, icon: string, children: {}}}
  */
 menu.content_manage = {
-  name: '内容管理',
+  name: '经济实力',
   icon: 'fa fa-file-text-o',
   children: {}
 };
@@ -45,7 +45,7 @@ menu.content_manage = {
 let ContentManage = menu.content_manage.children;
 
 ContentManage.post = {
-  name: '文章管理',
+  name: '生产总值跃居世界第二位',
   path: '/post_manage',
 };
 
@@ -54,7 +54,7 @@ ContentManage.post = {
  * @type {{name: string, icon: string, children: {}}}
  */
 menu.user_manage = {
-  name: '用户管理',
+  name: '人均收入',
   icon: 'fa fa-user-circle-o',
   children: {}
 };
